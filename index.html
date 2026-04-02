@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AURË – Ohrringe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #faf7f2;
+      --warm: #f0e8da;
+      --gold: #c9a96e;
+      --gold-dark: #a07840;
+      --dark: #1a1410;
+      --mid: #6b5744;
+      --light: #b8a898;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      font-weight: 300;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 3rem;
+      background: rgba(250,247,242,0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,169,110,0.2);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.25em;
+      color: var(--dark);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--gold); }
+
+    .nav-right {
+      display: flex; align-items: center; gap: 2.5rem;
+    }
+
+    .nav-link {
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover { color: var(--gold); }
+
+    .cart-btn {
+      position: relative;
+      background: none; border: none; cursor: pointer;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--dark);
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.5rem 1.2rem;
+      border: 1px solid var(--gold);
+      transition: all 0.25s;
+    }
+
+    .cart-btn:hover { background: var(--gold); color: white; }
+
+    .cart-icon { font-size: 1rem; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 4rem 5rem 5rem;
+    }
+
+    .hero-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      margin-bottom: 2rem;
+      color: var(--dark);
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--mid);
+      line-height: 1.8;
+      max-width: 380px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--dark);
+      color: var(--cream);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s;
+      align-self: flex-start;
+    }
+
+    .hero-cta:hover { background: var(--gold-dark); }
+
+    .hero-right {
+      background: var(--warm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-visual {
+      font-size: 10rem;
+      opacity: 0.15;
+      position: absolute;
+      right: -1rem;
+      bottom: -2rem;
+      line-height: 1;
+    }
+
+    .hero-badge {
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      position: relative; z-index: 1;
+    }
+
+    .hero-badge .big {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      color: var(--gold);
+    }
+
+    .hero-badge .small {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    /* DIVIDER */
+    .divider {
+      display: flex; align-items: center; gap: 1.5rem;
+      padding: 0 5rem;
+      margin: 3rem 0;
+    }
+
+    .divider-line { flex: 1; height: 1px; background: rgba(201,169,110,0.3); }
+
+    .divider-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--light);
+    }
+
+    /* SHOP */
+    .shop {
+      padding: 2rem 5rem 6rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      font-weight: 300;
+    }
+
+    .section-count {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: var(--light);
+      text-transform: uppercase;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: white;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .card:hover { transform: translateY(-4px); }
+
+    .card-img {
+      aspect-ratio: 1;
+      background: var(--warm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-img::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.04));
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 1rem; left: 1rem;
+      background: var(--gold);
+      color: white;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.7rem;
+    }
+
+    .card-body {
+      padding: 1.4rem;
+      border-top: 1px solid var(--warm);
+    }
+
+    .card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .card-material {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      color: var(--light);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--gold-dark);
+    }
+
+    .add-btn {
+      background: var(--dark);
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.7rem 1.2rem;
+      transition: background 0.2s;
+    }
+
+    .add-btn:hover { background: var(--gold-dark); }
+
+    .out-of-stock {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      color: var(--light);
+      text-transform: uppercase;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark);
+      color: var(--light);
+      text-align: center;
+      padding: 2.5rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+    }
+
+    footer span { color: var(--gold); }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-left > * { animation: fadeUp 0.7s ease both; }
+    .hero-tag    { animation-delay: 0.1s; }
+    .hero-title  { animation-delay: 0.25s; }
+    .hero-sub    { animation-delay: 0.4s; }
+    .hero-cta    { animation-delay: 0.55s; }
+
+    @media (max-width: 768px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { height: 220px; }
+      .hero-left { padding: 3rem 1.5rem; }
+      .shop { padding: 2rem 1.5rem 4rem; }
+      .divider { padding: 0 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">AUR<span>Ë</span></a>
+  <div class="nav-right">
+    <a href="#kollektion" class="nav-link">Kollektion</a>
+    <a href="#" class="nav-link">Über uns</a>
+    <button class="cart-btn snipcart-checkout">
+      <span class="cart-icon">○</span>
+      Warenkorb
+      <span class="snipcart-items-count"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tag">Handgefertigte Ohrringe · Düsseldorf</p>
+    <h1 class="hero-title">
+      Jedes Paar<br>
+      <em>einzigartig.</em>
+    </h1>
+    <p class="hero-sub">
+      Ohrringe die auffallen – handgemacht mit Liebe,
+      für jeden Anlass. Von schlicht bis statement,
+      hier findest du dein nächstes Lieblingspaar.
+    </p>
+    <a href="#kollektion" class="hero-cta">Kollektion entdecken</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-visual">◇</div>
+    <div class="hero-badge">
+      <span class="big">♡</span>
+      <span class="small">Handmade<br>with love</span>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="divider-line"></div>
+  <span class="divider-text">Unsere Kollektion</span>
+  <div class="divider-line"></div>
+</div>
+
+<!-- SHOP -->
+<section class="shop" id="kollektion">
+  <div class="section-header">
+    <h2 class="section-title">Aktuelle Stücke</h2>
+    <span class="section-count">6 Produkte</span>
+  </div>
+
+  <div class="grid">
+
+    <!-- Produkt 1 -->
+    <div class="card">
+      <div class="card-img">
+        🪙
+        <span class="card-badge">Neu</span>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Goldene Creolen</div>
+        <div class="card-material">Vergoldetes Messing · 3 cm</div>
+        <div class="card-footer">
+          <span class="card-price">14,90 €</span>
+          <button class="add-btn snipcart-add-item"
+            data-item-id="creolen-gold"
+            data-item-name="Goldene Creolen"
+            data-item-price="14.90"
+            data-item-url="/shop"
+            data-item-description="Vergoldetes Messing, 3 cm Durchmesser"
+            data-item-max-quantity="5">
+            + Warenkorb
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Produkt 2 -->
+    <div class="card">
+      <div class="card-img">💎</div>
+      <div class="card-body">
+        <div class="card-name">Kristall Studs</div>
+        <div class="card-material">925 Silber · Swarovski</div>
+        <div class="card-footer">
+          <span class="card-price">19,90 €</span>
+          <button class="add-btn snipcart-add-item"
+            data-item-id="kristall-studs"
+            data-item-name="Kristall Studs"
+            data-item-price="19.90"
+            data-item-url="/shop"
+            data-item-description="925 Silber mit Swarovski Kristall"
+            data-item-max-quantity="3">
+            + Warenkorb
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Produkt 3 -->
+    <div class="card">
+      <div class="card-img">
+        🌙
+        <span class="card-badge">Beliebt</span>
+      </div>
+      <div class="card-body">
+        <div class="card-name">Mond Hänger</div>
+        <div class="card-material">Oxidiertes Silber · 4 cm</div>
+        <div class="card-footer">
+          <span class="card-price">24,90 €</span>
+          <button class="add-btn snipcart-add-item"
+            data-item-id="mond-haenger"
+            data-item-name="Mond Hänger"
+            data-item-price="24.90"
+            data-item-url="/shop"
+            data-item-description="Oxidiertes Silber, mondförmiger Hänger"
+            data-item-max-quantity="4">
+            + Warenkorb
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Produkt 4 -->
+    <div class="card">
+      <div class="card-img">🌸</div>
+      <div class="card-body">
+        <div class="card-name">Blüten Clips</div>
+        <div class="card-material">Polymer Clay · Handgemacht</div>
+        <div class="card-footer">
+          <span class="card-price">12,90 €</span>
+          <button class="add-btn snipcart-add-item"
+            data-item-id="blueten-clips"
+            data-item-name="Blüten Clips"
+            data-item-price="12.90"
+            data-item-url="/shop"
+            data-item-description="Handgemacht aus Polymer Clay"
+            data-item-max-quantity="6">
+            + Warenkorb
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Produkt 5 – ausverkauft -->
+    <div class="card">
+      <div class="card-img" style="opacity:0.5">⭐</div>
+      <div class="card-body">
+        <div class="card-name">Stern Ohrstecker</div>
+        <div class="card-material">925 Silber vergoldet</div>
+        <div class="card-footer">
+          <span class="card-price" style="color:var(--light)">16,90 €</span>
+          <span class="out-of-stock">Ausverkauft</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Produkt 6 -->
+    <div class="card">
+      <div class="card-img">🫧</div>
+      <div class="card-body">
+        <div class="card-name">Perlen Hänger</div>
+        <div class="card-material">Süßwasserperlen · 5 cm</div>
+        <div class="card-footer">
+          <span class="card-price">29,90 €</span>
+          <button class="add-btn snipcart-add-item"
+            data-item-id="perlen-haenger"
+            data-item-name="Perlen Hänger"
+            data-item-price="29.90"
+            data-item-url="/shop"
+            data-item-description="Echte Süßwasserperlen, 5 cm"
+            data-item-max-quantity="2">
+            + Warenkorb
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <span>AURË</span> · Handgefertigte Ohrringe aus Düsseldorf · Mit ♡ gemacht</p>
+</footer>
+
+<!-- SNIPCART -->
+<script>
+    window.SnipcartSettings = {
+        publicApiKey: 'OGRjOGY0Y2UtNzg5ZC00MDcxLTg5NmYtMTEwOTE1ZDk3NzA1NjM5MTAzODg3MzIyMTg0Nzc4',
+        loadStrategy: 'on-user-interaction',
+        currency: 'eur',
+    };
+    (()=>{var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);var l,p;(p=(l=window.SnipcartSettings).domain)!=null||(l.domain="cdn.snipcart.com");var w,u;(u=(w=window.SnipcartSettings).protocol)!=null||(w.protocol="https");var f=window.SnipcartSettings.version.includes("v3.0.0-ci")||window.SnipcartSettings.version!="3.0"&&window.SnipcartSettings.version.localeCompare("3.4.0",void 0,{numeric:!0,sensitivity:"base"})===-1,m=["focus","mouseover","touchmove","scroll","keydown"];window.LoadSnipcart=o;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();function r(){window.SnipcartSettings.loadStrategy?window.SnipcartSettings.loadStrategy==="on-user-interaction"&&(m.forEach(t=>document.addEventListener(t,o)),setTimeout(o,window.SnipcartSettings.timeoutDuration)):o()}var a=!1;function o(){if(a)return;a=!0;let t=document.getElementsByTagName("head")[0],e=document.querySelector("#snipcart"),i=document.querySelector(`src[src^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][src$="snipcart.js"]`),n=document.querySelector(`link[href^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][href$="snipcart.css"]`);e||(e=document.createElement("div"),e.id="snipcart",e.setAttribute("hidden","true"),document.body.appendChild(e)),v(e),i||(i=document.createElement("script"),i.src=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.js`,i.async=!0,t.appendChild(i)),n||(n=document.createElement("link"),n.rel="stylesheet",n.type="text/css",n.href=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.css`,t.prepend(n)),m.forEach(g=>document.removeEventListener(g,o))}function v(t){!f||(t.dataset.apiKey=window.SnipcartSettings.publicApiKey,window.SnipcartSettings.addProductBehavior&&(t.dataset.configAddProductBehavior=window.SnipcartSettings.addProductBehavior),window.SnipcartSettings.modalStyle&&(t.dataset.configModalStyle=window.SnipcartSettings.modalStyle),window.SnipcartSettings.currency&&(t.dataset.currency=window.SnipcartSettings.currency),window.SnipcartSettings.templatesUrl&&(t.dataset.templatesUrl=window.SnipcartSettings.templatesUrl))}})();
+</script>
+
+</body>
+</html>
